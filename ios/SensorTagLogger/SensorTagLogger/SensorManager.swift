@@ -136,8 +136,7 @@ class SensorManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     func getLuxometerData(data: Data) -> [Float] {
         let values: [UInt16] = toArray(data: data, count: 1)
         let m = values[0] & 0x0fff;
-        var e = (values[0] & 0xf000) >> 12;
-        e = e == 0 ? 1 : 2 << (e - 1)
+        let e = 1 << ((values[0] & 0xf000) >> 12);
         return [Float(m) * Float(e) * 0.01]
     }
 
