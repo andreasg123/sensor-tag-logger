@@ -1,5 +1,6 @@
 const http = require('http');
 const fs = require('fs');
+
 const http_server = http.createServer((req, res) => {
   if (req.method === 'POST') {
     const stream = fs.createWriteStream('/tmp/data.json', {flags: 'a'});
@@ -13,3 +14,5 @@ const http_server = http.createServer((req, res) => {
     });
   }
 });
+
+http_server.listen(8081);
